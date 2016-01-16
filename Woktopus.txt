@@ -12,11 +12,11 @@ Lib :
 
 	Input Manager -> AUGUSTE
 	
-	Animation
+	Animation -> THOMAS -> FAIT
 
 	Camera
 	
-	Background parallax
+	Background parallax -> THOMAS
 
 	(Editeur de map)
 	
