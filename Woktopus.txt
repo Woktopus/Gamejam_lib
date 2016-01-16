@@ -1,0 +1,66 @@
+Pas de 3D !
+
+
+Résolution d'écran à définir dès le début
+
+
+Lib :
+
+	Sérialisation/Désérialisation
+
+	Sound Manager (musique + bruitages)
+
+	Input Manager -> AUGUSTE
+	
+	Animation
+
+	Camera
+	
+	Background parallax
+
+	(Editeur de map)
+	
+	Tile
+
+	Text box
+	
+	Collisions (Farseer Physics)
+	
+	ScreenState
+	
+	Entity Manager
+	
+	Patterns de déplacements
+	
+
+Types de jeux possibles :
+	
+	Text-based
+	
+	Plateformer
+	
+	Puzzle
+	
+	Shooter
+	
+	Reflexe
+	
+	Versus
+	
+	Course
+	
+
+Sons :
+
+	https://gamesounds.xyz/
+	
+	
+Tutos :
+	
+	Tuto XNA : http://blogs.msdn.com/b/tarawalker/archive/2012/12/04/windows-8-game-development-using-c-xna-and-monogame-3-0-building-a-shooter-game-walkthrough-part-1-overview-installation-monogame-3-0-project-creation.aspx
+
+	Vidéos sur XNA : https://www.youtube.com/playlist?list=PLDC1A9D5C3F8ED318
+
+	RPG XNA : https://www.youtube.com/playlist?list=PLHJE4y54mpC5hrlDv8yFHPfrSNhqFoA0h
+
+	Platformer XNA : https://www.youtube.com/playlist?list=PLE500D63CA505443B
