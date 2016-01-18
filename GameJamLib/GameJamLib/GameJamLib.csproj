@@ -39,8 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\Animation.cs" />
-    <Compile Include="Core\GameObject.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Core\ParallaxingBackground.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
