@@ -12,6 +12,14 @@ namespace GameJamLib
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+		Texture2D background_main;
+		Rectangle background_main_rect;
+
+		ParallaxingBackground background_parallax_1;
+		ParallaxingBackground background_parallax_2;
+
+		Animation testAnimation;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -28,6 +36,15 @@ namespace GameJamLib
         {
             // TODO: Add your initialization logic here
 
+			// Rect to draw the background to
+			background_main_rect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+
+			// Parallaxes
+			background_parallax_1 = new ParallaxingBackground();
+			background_parallax_2 = new ParallaxingBackground();
+
+			testAnimation = new Animation();
+
             base.Initialize();
         }
 
@@ -40,7 +57,17 @@ namespace GameJamLib
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+			// TODO: use this.Content to load your game content here
+
+			// Load background
+			background_main = Content.Load<Texture2D>("Graphics/Tutorial/mainbackground");
+
+			// Load parallaxes
+			background_parallax_1.Initialize(Content, "Graphics/Tutorial/bgLayer1", GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, -1);
+			background_parallax_2.Initialize(Content, "Graphics/Tutorial/bgLayer2", GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, -2);
+
+			Vector2 testAnimation_position = new Vector2(GraphicsDevice.Viewport.Width / 2, GraphicsDevice.Viewport.Height / 2);
+			testAnimation.LoadContent(Content, /*"Graphics/Tutorial/shipAnimation"*/"Graphics/CodingMadeEasyPlatformer/Hero1", Color.White, ""/*"Graphics/Tutorial/gameFont"*/, Color.Chocolate, "PLOP", testAnimation_position, 200, new Vector2(3, 4));
         }
 
         /// <summary>
@@ -50,6 +77,7 @@ namespace GameJamLib
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+			testAnimation.UnloadContent();
         }
 
         /// <summary>
@@ -59,10 +87,81 @@ namespace GameJamLib
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+			if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+			{
+				Exit();
+			}
 
             // TODO: Add your update logic here
+
+			// Update parallaxes
+			background_parallax_1.Update(gameTime);
+			background_parallax_2.Update(gameTime);
+
+
+			if (Keyboard.GetState().IsKeyDown(Keys.Q))
+			{
+				testAnimation.isActive = true;
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.W))
+			{
+				testAnimation.isActive = false;
+			}
+
+			if (Keyboard.GetState().IsKeyDown(Keys.E))
+			{
+				testAnimation.SetSpeed(50);
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.R))
+			{
+				testAnimation.SetSpeed(200);
+			}
+
+			if (Keyboard.GetState().IsKeyDown(Keys.T))
+			{
+				testAnimation.rotation = 0.6f;
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.Y))
+			{
+				testAnimation.rotation = 0.0f;
+			}
+
+			if (Keyboard.GetState().IsKeyDown(Keys.U))
+			{
+				testAnimation.scale = 4.0f;
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.I))
+			{
+				testAnimation.scale = 1.0f;
+			}
+
+			if (Keyboard.GetState().IsKeyDown(Keys.O))
+			{
+				testAnimation.alpha = 0.6f;
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.P))
+			{
+				testAnimation.alpha = 1.0f;
+			}
+
+			if (Keyboard.GetState().IsKeyDown(Keys.Down))
+			{
+				testAnimation.SelectAnimation(0);
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+			{
+				testAnimation.SelectAnimation(1);
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+			{
+				testAnimation.SelectAnimation(2);
+			}
+			else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+			{
+				testAnimation.SelectAnimation(3);
+			}
+
+			testAnimation.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -75,7 +174,21 @@ namespace GameJamLib
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+			// TODO: Add your drawing code here
+			// Start drawing
+			spriteBatch.Begin();
+
+			// Draw background
+			spriteBatch.Draw(background_main, background_main_rect, Color.White);
+
+			// Draw parallaxes
+			background_parallax_1.Draw(spriteBatch);
+			background_parallax_2.Draw(spriteBatch);
+
+			testAnimation.Draw(spriteBatch);
+
+			// Stop drawing
+			spriteBatch.End(); 
 
             base.Draw(gameTime);
         }

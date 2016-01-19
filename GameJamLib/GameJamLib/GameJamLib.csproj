@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Core\Animation.cs" />
+    <Compile Include="Core\Image.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Core\ParallaxingBackground.cs" />
     <Compile Include="Program.cs" />
@@ -55,10 +56,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Graphics\CodingMadeEasyPlatformer\Hero1.png" />
+    <Content Include="Content\Graphics\Tutorial\bgLayer1.png" />
+    <Content Include="Content\Graphics\Tutorial\bgLayer2.png" />
+    <Content Include="Content\Graphics\Tutorial\mainbackground.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\Graphics\Tutorial\gameFont.spritefont" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

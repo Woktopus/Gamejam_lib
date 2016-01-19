@@ -6,119 +6,93 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GameJamLib
 {
-	class Animation
+	public class Animation : Image
 	{
-		// The image representing the collection of images used for animation
-		Texture2D spriteStrip;
+		private int frameCounter { get; set; }
+		private int frameDuration { get; set; }
+		private Vector2 frames { get; set; }
+		private Vector2 currentFrame { get; set; }
 
-		// The scale used to display the sprite strip
-		public float scale;
+		// Can be modified without fucking up everything
+		public bool isActive { get; set; }
 
-		// The time since we last updated the frame
-		int elapsedTime;
-
-		// The time we display a frame until the next one
-		int frameTime;
-
-		// The number of frames that the animation contains
-		int frameCount;
-
-		// The index of the current frame we are displaying
-		int currentFrame;
-
-		// The color of the frame we will be displaying
-		Color color;
-
-		// The area of the image strip we want to display
-		Rectangle sourceRect = new Rectangle();
-
-		// The area where we want to display the image strip in the game
-		Rectangle destinationRect = new Rectangle();
-
-		// Width of a given frame
-		public int frameWidth;
-
-		// Height of a given frame
-		public int frameHeight;
-
-		// The state of the Animation
-		public bool active;
-
-		// Determines if the animation will keep playing or deactivate after one run
-		public bool looping;
-
-		public Vector2 position;
-
-		public void Initialize(Texture2D spritestrip, Vector2 position, int frameWidth, int frameHeight, int frameCount, int frametime, Color color, float scale, bool looping)
+		private int FrameWidth
 		{
-			// Keep a local copy of the values passed in
-			this.color = color;
-			this.frameWidth = frameWidth;
-			this.frameHeight = frameHeight;
-			this.frameCount = frameCount;
-			this.frameTime = frametime;
-			this.scale = scale;
-			this.looping = looping;
-			this.position = position;
-			this.spriteStrip = spritestrip;
-
-			// Set the time to zero
-			elapsedTime = 0;
-			currentFrame = 0;
-
-			// Set the Animation to active by default
-			active = true;
+			get { return texture.Width / (int)frames.X; }
 		}
 
-		public void Update(GameTime gameTime)
+		private int FrameHeight
 		{
-			// Do not update the game if we are not active
-			if (active == false) return;
+			get { return texture.Height / (int)frames.Y; }
+		}
 
-			// Update the elapsed time
-			elapsedTime += (int)gameTime.ElapsedGameTime.TotalMilliseconds;
+		public bool SelectAnimation(int index)
+		{
+			currentFrame = new Vector2(currentFrame.X, index);
 
-			// If the elapsed time is larger than the frame time
-			// we need to switch frames
-			if (elapsedTime > frameTime)
+			if (currentFrame.Y * FrameHeight >= texture.Height)
 			{
-				// Move to the next frame
-				currentFrame++;
+				currentFrame = new Vector2(currentFrame.X, 0);
 
-				// If the currentFrame is equal to frameCount reset currentFrame to zero
-				if (currentFrame == frameCount)
+				return false;
+			}
+
+			return true;
+		}
+
+		public void SetSpeed(int milliseconds)
+		{
+			if (milliseconds > 0)
+			{
+				frameDuration = milliseconds;
+			}
+		}
+
+		public void LoadContent(ContentManager content, string texturePath, Color textureColor, string fontPath, Color fontColor, string text, Vector2 position,
+			int frameDuration, Vector2 frames)
+		{
+			base.LoadContent(content, texturePath, textureColor, fontPath, fontColor, text, position);
+
+			frameCounter = 0;
+			this.frameDuration = frameDuration;
+
+			this.frames = frames;
+			currentFrame = new Vector2(0, 0);
+
+			sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
+
+			isActive = false;
+		}
+
+		public override void UnloadContent()
+		{
+			base.UnloadContent();
+		}
+
+		public override void Update(GameTime gameTime)
+		{
+			if (isActive)
+			{
+				frameCounter += (int)gameTime.ElapsedGameTime.Milliseconds;
+
+				if (frameCounter >= frameDuration)
 				{
-					currentFrame = 0;
+					frameCounter = 0;
+					currentFrame = new Vector2(currentFrame.X + 1, currentFrame.Y);
 
-					// If we are not looping deactivate the animation
-					if (looping == false)
+					if (currentFrame.X * FrameWidth >= texture.Width)
 					{
-						active = false;
+						currentFrame = new Vector2(0, currentFrame.Y);
 					}
 				}
-
-				// Reset the elapsed time to zero
-				elapsedTime = 0;
 			}
-
-			// Grab the correct frame in the image strip by multiplying the currentFrame index by the frame width
-			sourceRect = new Rectangle(currentFrame * frameWidth, 0, frameWidth, frameHeight);
-
-			destinationRect = new Rectangle(
-				(int)position.X - (int)(frameWidth * scale) / 2,
-				(int)position.Y - (int)(frameHeight * scale) / 2,
-				(int)(frameWidth * scale),
-				(int)(frameHeight * scale)
-			);
-		}
-
-		public void Draw(SpriteBatch spriteBatch)
-		{
-			// Only draw the animation when we are active
-			if (active)
+			else
 			{
-				spriteBatch.Draw(spriteStrip, destinationRect, sourceRect, color);
+				frameCounter = 0;
+				currentFrame = new Vector2(0, currentFrame.Y);
 			}
+
+			sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);
 		}
 	}
 }
