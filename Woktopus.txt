@@ -12,21 +12,21 @@ Lib :
 
 	Input Manager -> AUGUSTE
 	
-	Animation -> THOMAS -> FAIT
+	Animation -> THOMAS -> FAIT -> A AMELIORER -> THOMAS
 
 	Camera
 	
-	Background parallax -> THOMAS
+	Background parallax -> THOMAS -> FAIT
 
 	(Editeur de map)
 	
-	Tile
+	(Tile)
 
-	Text box
+	Text box -> AUGUSTE
 	
 	Collisions (Farseer Physics)
 	
-	ScreenState
+	ScreenState -> 
 	
 	Entity Manager
 	
