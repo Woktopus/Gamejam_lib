@@ -10,7 +10,7 @@ Lib :
 
 	Sound Manager (musique + bruitages)
 
-	Input Manager -> AUGUSTE
+	Input Manager -> AUGUSTE -> FAIT
 	
 	Animation -> THOMAS -> FAIT -> A AMELIORER -> THOMAS
 
