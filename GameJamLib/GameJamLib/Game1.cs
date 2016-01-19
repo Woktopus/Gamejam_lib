@@ -104,64 +104,64 @@ namespace GameJamLib
 			background_parallax_2.Update(gameTime);
 
 
-			if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Q))
 			{
 				testAnimation.isActive = true;
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.W))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.W))
 			{
 				testAnimation.isActive = false;
 			}
 
-			if (Keyboard.GetState().IsKeyDown(Keys.E))
+            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.E))
 			{
 				testAnimation.SetSpeed(50);
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.R))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.R))
 			{
 				testAnimation.SetSpeed(200);
 			}
 
-			if (Keyboard.GetState().IsKeyDown(Keys.T))
+            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.T))
 			{
 				testAnimation.rotation = 0.6f;
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.Y))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Y))
 			{
 				testAnimation.rotation = 0.0f;
 			}
 
-			if (Keyboard.GetState().IsKeyDown(Keys.U))
+            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.U))
 			{
 				testAnimation.scale = 4.0f;
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.I))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.I))
 			{
 				testAnimation.scale = 1.0f;
 			}
 
-			if (Keyboard.GetState().IsKeyDown(Keys.O))
+            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.O))
 			{
 				testAnimation.alpha = 0.6f;
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.P))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.P))
 			{
 				testAnimation.alpha = 1.0f;
 			}
 
-			if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Down))
 			{
 				testAnimation.SelectAnimation(0);
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Left))
 			{
 				testAnimation.SelectAnimation(1);
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Right))
 			{
 				testAnimation.SelectAnimation(2);
 			}
-			else if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Up))
 			{
 				testAnimation.SelectAnimation(3);
 			}

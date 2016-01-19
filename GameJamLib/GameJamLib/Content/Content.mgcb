@@ -35,27 +35,7 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Tutorial/bgLayer2.png
 
-#begin Graphics/Tutorial/endMenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/endMenu.png
 
-#begin Graphics/Tutorial/explosion.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/explosion.png
 
 #begin Graphics/Tutorial/gameFont.spritefont
 /importer:FontDescriptionImporter
@@ -63,16 +43,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Graphics/Tutorial/gameFont.spritefont
 
-#begin Graphics/Tutorial/laser.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/laser.png
 
 #begin Graphics/Tutorial/mainbackground.png
 /importer:TextureImporter
@@ -85,60 +55,7 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Tutorial/mainbackground.png
 
-#begin Graphics/Tutorial/mainMenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/mainMenu.png
 
-#begin Graphics/Tutorial/mine.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/mine.png
-
-#begin Graphics/Tutorial/mineAnimation.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/mineAnimation.png
-
-#begin Graphics/Tutorial/player.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/player.png
-
-#begin Graphics/Tutorial/shipAnimation.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:TextureFormat=Color
-/build:Graphics/Tutorial/shipAnimation.png
 
 #begin Graphics/CodingMadeEasyPlatformer/Hero1.png
 /importer:TextureImporter

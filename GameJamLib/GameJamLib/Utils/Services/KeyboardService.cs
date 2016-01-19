@@ -20,7 +20,7 @@ namespace GameJamLib.Utils.Services
             ServiceHelper.Add<KeyboardService>(this);
         }
 
-        bool IsKeyDown(Keys key) 
+        public bool IsKeyDown(Keys key) 
         {
             return KBState.IsKeyDown(key);
         }
