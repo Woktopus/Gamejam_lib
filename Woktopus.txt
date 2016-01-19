@@ -12,7 +12,7 @@ Lib :
 
 	Input Manager -> AUGUSTE
 	
-	Animation -> THOMAS -> FAIT -> A AMELIORER -> AUGUSTE
+	Animation -> THOMAS -> FAIT -> A AMELIORER -> THOMAS
 
 	Camera
 	
@@ -22,11 +22,11 @@ Lib :
 	
 	(Tile)
 
-	Text box
+	Text box -> AUGUSTE
 	
 	Collisions (Farseer Physics)
 	
-	ScreenState -> AUGUSTE
+	ScreenState -> 
 	
 	Entity Manager
 	
