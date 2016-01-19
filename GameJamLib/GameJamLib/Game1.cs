@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GameJamLib.Utils.Services;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -16,6 +17,10 @@ namespace GameJamLib
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            
+            //setup du serviceHelperet ajout du KeyboardService aux Components
+            ServiceHelper.Game = this;
+            Components.Add(new KeyboardService(this));
         }
 
         /// <summary>
