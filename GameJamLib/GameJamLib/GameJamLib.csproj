@@ -44,6 +44,8 @@
     <Compile Include="Core\ParallaxingBackground.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Services\GamePadService.cs" />
+    <Compile Include="Utils\Services\InputManagerService.cs" />
     <Compile Include="Utils\Services\KeyboardService.cs" />
     <Compile Include="Utils\Services\ServiceHelper.cs" />
   </ItemGroup>

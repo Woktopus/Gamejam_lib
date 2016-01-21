@@ -1,4 +1,5 @@
-﻿using GameJamLib.Utils.Services;
+﻿using System;
+using GameJamLib.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -26,9 +27,9 @@ namespace GameJamLib
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             
-            //setup du serviceHelperet ajout du KeyboardService aux Components
+            //setup du serviceHelperet ajout du InputManagerService aux Components
             ServiceHelper.Game = this;
-            Components.Add(new KeyboardService(this));
+            Components.Add(new InputManagerService(this));
         }
 
         /// <summary>
@@ -103,65 +104,66 @@ namespace GameJamLib
 			background_parallax_1.Update(gameTime);
 			background_parallax_2.Update(gameTime);
 
+            var ks = ServiceHelper.Get<InputManagerService>().Keyboard.GetState(); 
 
-            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Q))
+            if (ks.IsKeyDown(Keys.Q))
 			{
 				testAnimation.isActive = true;
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.W))
+            else if (ks.IsKeyDown(Keys.W))
 			{
 				testAnimation.isActive = false;
 			}
 
-            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.E))
+            if (ks.IsKeyDown(Keys.E))
 			{
 				testAnimation.SetSpeed(50);
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.R))
+            else if (ks.IsKeyDown(Keys.R))
 			{
 				testAnimation.SetSpeed(200);
 			}
 
-            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.T))
+            if (ks.IsKeyDown(Keys.T))
 			{
 				testAnimation.rotation = 0.6f;
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Y))
+            else if (ks.IsKeyDown(Keys.Y))
 			{
 				testAnimation.rotation = 0.0f;
 			}
 
-            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.U))
+            if (ks.IsKeyDown(Keys.U))
 			{
 				testAnimation.scale = 4.0f;
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.I))
+            else if (ks.IsKeyDown(Keys.I))
 			{
 				testAnimation.scale = 1.0f;
 			}
 
-            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.O))
+            if (ks.IsKeyDown(Keys.O))
 			{
 				testAnimation.alpha = 0.6f;
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.P))
+            else if (ks.IsKeyDown(Keys.P))
 			{
 				testAnimation.alpha = 1.0f;
 			}
 
-            if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Down))
+            if (ks.IsKeyDown(Keys.Down))
 			{
 				testAnimation.SelectAnimation(0);
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Left))
+            else if (ks.IsKeyDown(Keys.Left))
 			{
 				testAnimation.SelectAnimation(1);
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Right))
+            else if (ks.IsKeyDown(Keys.Right))
 			{
 				testAnimation.SelectAnimation(2);
 			}
-            else if (ServiceHelper.Get<KeyboardService>().IsKeyDown(Keys.Up))
+            else if (ks.IsKeyDown(Keys.Up))
 			{
 				testAnimation.SelectAnimation(3);
 			}
