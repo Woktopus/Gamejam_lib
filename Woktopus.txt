@@ -10,13 +10,13 @@ Lib :
 
 	Sound Manager (musique + bruitages)
 
-	Input Manager -> AUGUSTE -> FAIT
+	Input Manager -> AUGUSTE
 	
-	Animation -> THOMAS -> FAIT -> A AMELIORER -> THOMAS
+	Animation -> THOMAS - FAIT
 
 	Camera
 	
-	Background parallax -> THOMAS -> FAIT
+	Background parallax -> THOMAS - A AMELIORER
 
 	(Editeur de map)
 	
@@ -24,9 +24,9 @@ Lib :
 
 	Text box -> AUGUSTE
 	
-	Collisions (Farseer Physics)
+	Collisions (Farseer Physics) -> THOMAS
 	
-	ScreenState -> 
+	ScreenState -> AUGUSTE
 	
 	Entity Manager
 	

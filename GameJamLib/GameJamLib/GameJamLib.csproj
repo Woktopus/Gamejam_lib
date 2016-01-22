@@ -69,9 +69,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="Content\Graphics\CodingMadeEasyPlatformer\Thumbs.db" />
     <None Include="Content\Graphics\Tutorial\gameFont.spritefont" />
-    <None Include="Content\Graphics\Tutorial\Thumbs.db" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">

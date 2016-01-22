@@ -11,7 +11,8 @@ namespace GameJamLib
 		private int frameCounter { get; set; }
 		private int frameDuration { get; set; }
 		private Vector2 frames { get; set; }
-		private Vector2 currentFrame { get; set; }
+
+		private Vector2 currentFrame;
 
 		// Can be modified without fucking up everything
 		public bool isActive { get; set; }
@@ -28,11 +29,11 @@ namespace GameJamLib
 
 		public bool SelectAnimation(int index)
 		{
-			currentFrame = new Vector2(currentFrame.X, index);
+			currentFrame.Y = index;
 
 			if (currentFrame.Y * FrameHeight >= texture.Height)
 			{
-				currentFrame = new Vector2(currentFrame.X, 0);
+				currentFrame.Y = 0;
 
 				return false;
 			}
@@ -78,18 +79,18 @@ namespace GameJamLib
 				if (frameCounter >= frameDuration)
 				{
 					frameCounter = 0;
-					currentFrame = new Vector2(currentFrame.X + 1, currentFrame.Y);
+					currentFrame.X++;
 
 					if (currentFrame.X * FrameWidth >= texture.Width)
 					{
-						currentFrame = new Vector2(0, currentFrame.Y);
+						currentFrame.X = 0;
 					}
 				}
 			}
 			else
 			{
 				frameCounter = 0;
-				currentFrame = new Vector2(0, currentFrame.Y);
+				currentFrame.X = 0;
 			}
 
 			sourceRect = new Rectangle((int)currentFrame.X * FrameWidth, (int)currentFrame.Y * FrameHeight, FrameWidth, FrameHeight);

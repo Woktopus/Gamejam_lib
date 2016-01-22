@@ -26,7 +26,7 @@ namespace GameJamLib
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             
-            //setup du serviceHelperet ajout du KeyboardService aux Components
+            //setup du serviceHelper et ajout du KeyboardService aux Components
             ServiceHelper.Game = this;
             Components.Add(new KeyboardService(this));
         }
