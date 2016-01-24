@@ -19,10 +19,14 @@ namespace GameJamLib
 		public Color textureColor { get; set; }
 		public Color fontColor { get; set; }
 		public float rotation { get; set; }
-		public float scale { get; set; }
+		public Vector2 scale { get; set; }
 		public float alpha { get; set; }
 		public Vector2 position { get; set; }
 
+		public Rectangle SourceRect
+		{
+			get { return sourceRect; }
+		}
 
 		public void LoadContent(ContentManager content, string texturePath, Color textureColor, string fontPath, Color fontColor, string text, Vector2 position)
 		{
@@ -46,7 +50,7 @@ namespace GameJamLib
 			this.position = position;
 
 			rotation = 0.0f;
-			scale = 1.0f;
+			scale = new Vector2(1, 1);
 
 			alpha = 1.0f;
 		}
@@ -66,12 +70,12 @@ namespace GameJamLib
 			if (texture != null)
 			{
 				origin = new Vector2(sourceRect.Width / 2, sourceRect.Height / 2);
-				spriteBatch.Draw(texture, position + origin, sourceRect, textureColor * alpha, rotation, origin, scale, SpriteEffects.None, 0.0f);
+				spriteBatch.Draw(texture, position /*+ (origin * scale)*/, sourceRect, textureColor * alpha, rotation, origin, scale, SpriteEffects.None, 0.0f);
 			}
 			if (font != null)
 			{
 				origin = new Vector2(font.MeasureString(text).X / 2, font.MeasureString(text).Y / 2);
-				spriteBatch.DrawString(font, text, position + origin, fontColor * alpha, rotation, origin, scale, SpriteEffects.None, 0.0f);
+				spriteBatch.DrawString(font, text, position /*+ (origin * scale)*/, fontColor * alpha, rotation, origin, scale, SpriteEffects.None, 0.0f);
 			}
 		}
 	}

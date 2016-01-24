@@ -89,11 +89,11 @@ namespace GameJamLib.Core
 
             if (ks.IsKeyDown(Keys.U))
             {
-                testAnimation.scale = 4.0f;
+				testAnimation.scale = new Vector2(4, 4);
             }
             else if (ks.IsKeyDown(Keys.I))
             {
-                testAnimation.scale = 1.0f;
+				testAnimation.scale = new Vector2(1, 1);
             }
 
             if (ks.IsKeyDown(Keys.O))

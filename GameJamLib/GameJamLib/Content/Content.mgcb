@@ -35,14 +35,11 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Tutorial/bgLayer2.png
 
-
-
 #begin Graphics/Tutorial/gameFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
 /processorParam:TextureFormat=Compressed
 /build:Graphics/Tutorial/gameFont.spritefont
-
 
 #begin Graphics/Tutorial/mainbackground.png
 /importer:TextureImporter
@@ -55,8 +52,6 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/Tutorial/mainbackground.png
 
-
-
 #begin Graphics/CodingMadeEasyPlatformer/Hero1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -67,4 +62,15 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:TextureFormat=Color
 /build:Graphics/CodingMadeEasyPlatformer/Hero1.png
+
+#begin Graphics/minecraft.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:TextureFormat=Color
+/build:Graphics/minecraft.jpg
 

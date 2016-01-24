@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+
 using GameJamLib.Utils.Services;
+
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+
 /*
  * CLASS EXEMPLE POUR FAIRE UN SCREEN
 */
+
 namespace GameJamLib.Core
 {
-    class TittleScene : Scene
+    class TitleScene : Scene
     {
         Texture2D texture;
 

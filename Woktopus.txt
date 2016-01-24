@@ -8,9 +8,9 @@ Lib :
 
 	Sérialisation/Désérialisation
 
-	Sound Manager (musique + bruitages)
+	Sound Manager (musique + bruitages) -> AUGUSTE
 
-	Input Manager -> AUGUSTE
+	Input Manager -> AUGUSTE - FAIT
 	
 	Animation -> THOMAS - FAIT
 
@@ -24,9 +24,9 @@ Lib :
 
 	Text box -> AUGUSTE
 	
-	Collisions (Farseer Physics) -> THOMAS
+	Collisions (Farseer Physics) -> THOMAS - EN COURS
 	
-	ScreenState -> AUGUSTE
+	ScreenState -> MATHIEU - FAIT
 	
 	Entity Manager
 	
