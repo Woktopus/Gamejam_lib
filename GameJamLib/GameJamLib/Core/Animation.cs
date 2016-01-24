@@ -19,12 +19,12 @@ namespace GameJamLib
 
 		private int FrameWidth
 		{
-			get { return texture.Width / (int)frames.X; }
+			get { return (texture.Width / (int)frames.X); }
 		}
 
 		private int FrameHeight
 		{
-			get { return texture.Height / (int)frames.Y; }
+			get { return (texture.Height / (int)frames.Y); }
 		}
 
 		public bool SelectAnimation(int index)
