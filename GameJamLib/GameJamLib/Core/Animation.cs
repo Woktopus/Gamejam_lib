@@ -49,10 +49,10 @@ namespace GameJamLib
 			}
 		}
 
-		public void LoadContent(ContentManager content, string texturePath, Color textureColor, string fontPath, Color fontColor, string text, Vector2 position,
+		public void LoadContent(ContentManager content, string texturePath, Color textureColor, Vector2 position,
 			int frameDuration, Vector2 frames)
 		{
-			base.LoadContent(content, texturePath, textureColor, fontPath, fontColor, text, position);
+			base.LoadContent(content, texturePath, textureColor, position);
 
 			frameCounter = 0;
 			this.frameDuration = frameDuration;

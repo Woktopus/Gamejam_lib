@@ -12,6 +12,9 @@ using FarseerPhysics.Factories;
 using FarseerPhysics;
 using FarseerPhysics.Collision;
 using FarseerPhysics.Common;
+using FarseerPhysics.DebugView;
+using FarseerPhysics.Collision.Shapes;
+using System.Collections.Generic;
 
 namespace GameJamLib.Core
 {
@@ -21,11 +24,14 @@ namespace GameJamLib.Core
 
 		protected Vector2 gravity;
 
-		Body dynamicRectangle;
-		Animation dynamicRectangleAnimation;
+		protected DebugViewXNA debugView;
+		protected Matrix projection;
 
-		Body staticRectangle;
-		Image staticRectangleImage;
+		Body player;
+		Animation playerAnimation;
+
+		List<Body> platforms;
+		List<Image> platformsImages;
 
 		public PhysicsScene()
 		{
@@ -33,14 +39,19 @@ namespace GameJamLib.Core
 
 			gravity = new Vector2(0, 10);
 
-			dynamicRectangleAnimation = new Animation();
+			playerAnimation = new Animation();
 
-			staticRectangleImage = new Image();
+			platforms = new List<Body>();
+			platformsImages = new List<Image>();
 		}
 
-		public override void LoadContent(ContentManager Content, GraphicsDevice graph)
+		public override void LoadContent(ContentManager content, GraphicsDevice graph)
 		{
-			base.LoadContent(Content, graph);
+			base.LoadContent(content, graph);
+
+			Settings.UseFPECollisionCategories = true;
+
+			ConvertUnits.SetDisplayUnitToSimUnitRatio(32f);
 
 			if (world == null)
 			{
@@ -53,59 +64,62 @@ namespace GameJamLib.Core
 
 			world.Gravity = gravity;
 
-			ConvertUnits.SetDisplayUnitToSimUnitRatio(32f);
+			if (debugView == null)
+			{
+				debugView = new DebugViewXNA(world);
 
-			dynamicRectangle = BodyFactory.CreateRectangle(world, 1f, 1f, 0.5f);
-			dynamicRectangle.BodyType = BodyType.Dynamic;
-			dynamicRectangle.Position = new Vector2(10, 3);
-			dynamicRectangle.FixedRotation = true;
+				debugView.LoadContent(graph, content);
+			}
+			
+			projection = Matrix.CreateOrthographicOffCenter(
+				0f, ConvertUnits.ToSimUnits(graph.Viewport.Width),
+				ConvertUnits.ToSimUnits(graph.Viewport.Height), 0f,
+				0f, 1f
+			);
 
-			dynamicRectangleAnimation.LoadContent(
-				Content,
+			///////////////////////////////////////////////////////////////////////////////
+			player = BodyFactory.CreateCapsule(world, 0.5f, 0.8f, 1f);
+
+			player.CollisionCategories = Category.Cat2;
+			player.CollidesWith = Category.Cat1;
+
+			player.BodyType = BodyType.Dynamic;
+			player.Position = new Vector2(10, 3);
+			player.FixedRotation = true;
+
+			playerAnimation.LoadContent(
+				content,
 				"Graphics/CodingMadeEasyPlatformer/Hero1", Color.White,
-				"", Color.White, "",
-				ConvertUnits.ToDisplayUnits(dynamicRectangle.Position),
+				ConvertUnits.ToDisplayUnits(player.Position),
 				200, new Vector2(3, 4)
 			);
 
-			Transform dynamicRectangleTransform;
-			dynamicRectangle.GetTransform(out dynamicRectangleTransform);
+			playerAnimation.ScaleToBody(player);
 
-			AABB dynamicRectangleAABB;
-			dynamicRectangle.FixtureList[0].Shape.ComputeAABB(out dynamicRectangleAABB, ref dynamicRectangleTransform, 0);
+			playerAnimation.isActive = true;
 
-			Vector2 dynamicRectangleAnimationScale = new Vector2(
-				ConvertUnits.ToDisplayUnits(dynamicRectangleAABB.Width) / dynamicRectangleAnimation.SourceRect.Width,
-				ConvertUnits.ToDisplayUnits(dynamicRectangleAABB.Height) / dynamicRectangleAnimation.SourceRect.Height
-			);
+			for (int i = 0; i < 5; ++i)
+			{
+				Body platform = BodyFactory.CreateRectangle(world, 2f, 2f, 1f);
 
-			dynamicRectangleAnimation.scale = dynamicRectangleAnimationScale;
+				platform.CollisionCategories = Category.Cat1;
+				platform.CollidesWith = Category.Cat2;
 
-			dynamicRectangleAnimation.isActive = true;
+				platform.BodyType = BodyType.Static;
+				platform.Position = new Vector2(2 + (i * 3), 10);
 
-			staticRectangle = BodyFactory.CreateRectangle(world, 10f, 1f, 1f);
-			staticRectangle.BodyType = BodyType.Static;
-			staticRectangle.Position = new Vector2(10, 10);
+				Image platformImage = new Image();
+				platformImage.LoadContent(
+					 content,
+					 "Graphics/minecraft", Color.White,
+					 ConvertUnits.ToDisplayUnits(platform.Position)
+				 );
 
-			staticRectangleImage.LoadContent(
-				Content,
-				"Graphics/minecraft", Color.White,
-				"", Color.White, "",
-				ConvertUnits.ToDisplayUnits(staticRectangle.Position)
-			);
+				platformImage.ScaleToBody(platform);
 
-			Transform staticRectangleTransform;
-			staticRectangle.GetTransform(out staticRectangleTransform);
-
-			AABB staticRectangleAABB;
-			staticRectangle.FixtureList[0].Shape.ComputeAABB(out staticRectangleAABB, ref staticRectangleTransform, 0);
-
-			Vector2 staticRectangleImageScale = new Vector2(
-				ConvertUnits.ToDisplayUnits(staticRectangleAABB.Width) / staticRectangleImage.SourceRect.Width,
-				ConvertUnits.ToDisplayUnits(staticRectangleAABB.Height) / staticRectangleImage.SourceRect.Height
-			);
-
-			staticRectangleImage.scale = staticRectangleImageScale;
+				platforms.Add(platform);
+				platformsImages.Add(platformImage);
+			}
 		}
 
 		public override void UnloadContent()
@@ -119,21 +133,35 @@ namespace GameJamLib.Core
 
 			var input = ServiceHelper.Get<InputManagerService>().Keyboard.GetState();
 
-			Vector2 rightForce = new Vector2(5, 0);
-			Vector2 leftForce = new Vector2(-5, 0);
+			Vector2 jump = new Vector2(0, -3);
+			Vector2 movement = new Vector2(3, 0);
 
+			if (input.IsKeyDown(Keys.Up))
+			{
+				player.ApplyLinearImpulse(jump);
+			}
+			
 			if (input.IsKeyDown(Keys.Right))
 			{
-				dynamicRectangle.ApplyForce(ref rightForce);
+				player.ApplyLinearImpulse(movement);
 			}
-
+			
 			if (input.IsKeyDown(Keys.Left))
 			{
-				dynamicRectangle.ApplyForce(ref leftForce);
+				player.ApplyLinearImpulse(-movement);
 			}
 
-			dynamicRectangleAnimation.position = ConvertUnits.ToDisplayUnits(dynamicRectangle.Position);
-			dynamicRectangleAnimation.Update(gameTime);
+			if (input.IsKeyUp(Keys.Left) && input.IsKeyUp(Keys.Right))
+			{
+				player.LinearVelocity = new Vector2(player.LinearVelocity.X * 0.92f, player.LinearVelocity.Y);
+			}
+			else
+			{
+				player.LinearVelocity = new Vector2(MathHelper.Clamp(player.LinearVelocity.X, -10, 10), player.LinearVelocity.Y);
+			}
+
+			playerAnimation.position = ConvertUnits.ToDisplayUnits(player.Position);
+			playerAnimation.Update(gameTime);
 
 			// variable time step but never less then 30 Hz
 			world.Step(Math.Min((float)gameTime.ElapsedGameTime.TotalSeconds, (1f / 30f)));
@@ -141,8 +169,15 @@ namespace GameJamLib.Core
 
 		public override void Draw(SpriteBatch spriteBatch)
 		{
-			staticRectangleImage.Draw(spriteBatch);
-			dynamicRectangleAnimation.Draw(spriteBatch);
+			debugView.RenderDebugData(ref projection);
+
+			int platformCount = platforms.Count;
+			for (int i = 0; i < platformCount; ++i)
+			{
+				platformsImages[i].Draw(spriteBatch);
+			}
+
+			playerAnimation.Draw(spriteBatch);
 		}
 	}
 }

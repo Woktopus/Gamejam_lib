@@ -43,7 +43,13 @@ namespace GameJamLib.Core
             background_parallax_2.Initialize(Content, "Graphics/Tutorial/bgLayer2", graphicDevice.Viewport.Width, graphicDevice.Viewport.Height, -2);
 
             Vector2 testAnimation_position = new Vector2(graphicDevice.Viewport.Width / 2, graphicDevice.Viewport.Height / 2);
-            testAnimation.LoadContent(Content, /*"Graphics/Tutorial/shipAnimation"*/"Graphics/CodingMadeEasyPlatformer/Hero1", Color.White, ""/*"Graphics/Tutorial/gameFont"*/, Color.Chocolate, "PLOP", testAnimation_position, 200, new Vector2(3, 4));
+            
+			testAnimation.LoadContent(
+				Content,
+				/*"Graphics/Tutorial/shipAnimation"*/"Graphics/CodingMadeEasyPlatformer/Hero1", Color.White,
+				testAnimation_position,
+				200, new Vector2(3, 4)
+			);
 
         }
 

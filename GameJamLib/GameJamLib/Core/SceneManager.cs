@@ -105,7 +105,7 @@ namespace GameJamLib.Core
 
         public void Initialize()
         {
-            currentScene = new SplashScreen();
+            currentScene = new PhysicsScene();
             fade = new Transition();
             //inputManager = new InputManager();
         }
