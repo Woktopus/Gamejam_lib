@@ -44,6 +44,7 @@
     <Compile Include="Core\PhysicsScene.cs" />
     <Compile Include="Core\Scene.cs" />
     <Compile Include="Core\SceneManager.cs" />
+    <Compile Include="Core\SoundContainer.cs" />
     <Compile Include="Core\SplashScreen.cs" />
     <Compile Include="Core\Text.cs" />
     <Compile Include="Core\TitleScene.cs" />
@@ -54,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Services\InputManagerService.cs" />
     <Compile Include="Utils\Services\ServiceHelper.cs" />
+    <Compile Include="Utils\Services\SoundService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="OpenTK">
@@ -66,6 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Sounds\boudoom.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\fade.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -79,6 +84,9 @@
     </Content>
     <Content Include="Content\null.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sounds\zap.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />
   </ItemGroup>

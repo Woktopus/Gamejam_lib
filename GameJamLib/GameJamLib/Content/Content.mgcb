@@ -74,3 +74,15 @@
 /processorParam:TextureFormat=Color
 /build:Graphics/minecraft.jpg
 
+#begin Sounds/boudoom.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/boudoom.wav
+
+#begin Sounds/zap.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/zap.wav
+

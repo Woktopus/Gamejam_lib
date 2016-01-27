@@ -43,6 +43,8 @@ namespace GameJamLib.Core
 
 			platforms = new List<Body>();
 			platformsImages = new List<Image>();
+
+            
 		}
 
 		public override void LoadContent(ContentManager content, GraphicsDevice graph)
@@ -52,6 +54,8 @@ namespace GameJamLib.Core
 			Settings.UseFPECollisionCategories = true;
 
 			ConvertUnits.SetDisplayUnitToSimUnitRatio(32f);
+
+            ServiceHelper.Get<SoundService>().AddSound("zap", "Sounds/zap.wav");
 
 			if (world == null)
 			{
@@ -138,6 +142,7 @@ namespace GameJamLib.Core
 
 			if (input.IsKeyDown(Keys.Up))
 			{
+                ServiceHelper.Get<SoundService>().PlaySound("zap");
 				player.ApplyLinearImpulse(jump);
 			}
 			

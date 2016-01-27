@@ -23,6 +23,7 @@ namespace GameJamLib
             //setup du serviceHelper et ajout du InputManagerService aux Components
             ServiceHelper.Game = this;
             Components.Add(new InputManagerService(this));
+            Components.Add(new SoundService(this));
         }
 
         /// <summary>
