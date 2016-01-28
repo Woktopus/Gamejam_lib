@@ -33,7 +33,7 @@ namespace GameJamLib.Core
             time += (float)gameTime.ElapsedGameTime.TotalSeconds;
             if (time > 3f)
             {
-                SceneManager.Instance.AddScene(new GameScene());
+                SceneManager.Instance.AddScene(new MenuScene());
             }
             
         }
