@@ -45,7 +45,6 @@
     <Compile Include="Core\PhysicsScene.cs" />
     <Compile Include="Core\Scene.cs" />
     <Compile Include="Core\SceneManager.cs" />
-    <Compile Include="Core\SoundContainer.cs" />
     <Compile Include="Core\SplashScreen.cs" />
     <Compile Include="Core\Text.cs" />
     <Compile Include="Core\TitleScene.cs" />
@@ -96,6 +95,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\Graphics\Tutorial\gameFont.spritefont" />
   </ItemGroup>
   <ItemGroup>
